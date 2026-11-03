@@ -63,7 +63,7 @@ const StudioCard = ({studio}:{studio:Studio}) => {
           </Button>
         </Link>
       </CardFooter>
-    </Card>
+        </Card>
     );
 };
 

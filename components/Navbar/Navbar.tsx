@@ -33,6 +33,7 @@ const accountLinks = [
 ]
 
 export default function Navbar() {
+
   const pathname = usePathname()
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

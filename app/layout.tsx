@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,7 +27,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
+        <Suspense fallback={
+          <div className="flex items-center gap-4">
+            <Spinner className='mx-auto' />
+          </div>
+        }>
+          <Navbar />
+        </Suspense>
         <div className="grow">{children}</div>
         <Footer />
         
