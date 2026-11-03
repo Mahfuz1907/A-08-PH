@@ -30,6 +30,10 @@ const StudioCard = ({studio}:{studio:Studio}) => {
             <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-400 border border-sky-500/30 backdrop-blur-md z-10">
                 {studio.category}
             </span>
+            {/* Demo Rating Badge */}
+            <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-950/80 text-amber-400 border border-amber-500/30 backdrop-blur-md z-10 flex items-center gap-1">
+                ⭐ 4.8
+            </span>
         </div>
         <CardHeader className="p-5 pb-2">
           <h3 className="text-lg font-bold tracking-tight text-white line-clamp-1">
@@ -46,18 +50,18 @@ const StudioCard = ({studio}:{studio:Studio}) => {
           </p>
         </CardContent>
       </div>
-      <CardFooter className="p-5 pt-0 flex items-center justify-between border-t border-slate-800/60 mt-4">
+      <CardFooter className="p-5 pt-2 flex items-center justify-between border-t border-slate-800/60 mt-4">
         <div>
           <span className="text-xs text-slate-800 block">Hourly Rate</span>
           <span className="text-lg font-black text-sky-400">
             ${studio["hourly-rate"]}<span className="text-xs font-normal text-slate-400">/hr</span>
           </span>
         </div>
-        <Button size="sm" className="bg-sky-600 hover:bg-sky-700 text-white">
-          <Link href={`/studios`} className="flex flex-row justify-center items-center">
+        <Link href={`/studios/${studio._id || ''}`}>
+          <Button size="sm" className="bg-sky-600 hover:bg-sky-700 cursor-pointer text-white flex flex-row justify-center items-center">
             View Details <ArrowRight className="w-4 h-4 ml-1" />
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
     );
