@@ -10,7 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useContext } from "react";
+import { useSearchParams } from "next/navigation";
+import { useContext, useEffect } from "react";
 
 interface Category{
     _id: string,
@@ -28,7 +29,16 @@ interface Item{
 }
 
 const CatFilter = ({categories}:{categories: Category[]}) => {
-    const {setByCategory} = useContext(StudioContext)
+    const {byCategory, setByCategory} = useContext(StudioContext)
+    const searchParams = useSearchParams()
+    const queryCategory = searchParams.get("category")
+    
+    useEffect(() => {
+        if(queryCategory){
+            setByCategory(queryCategory)
+        }
+    }, [queryCategory, setByCategory])
+    console.log(byCategory)
 
     const items:Item[] = [
         { label: "Select a category", value: null },
@@ -41,7 +51,7 @@ const CatFilter = ({categories}:{categories: Category[]}) => {
     })
 
     return (
-        <Select items={items} onValueChange={setByCategory} >
+        <Select items={items} value={byCategory || ''} onValueChange={setByCategory} >
       <SelectTrigger className="w-full max-w-48">
         <SelectValue />
       </SelectTrigger>
