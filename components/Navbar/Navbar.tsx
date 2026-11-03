@@ -22,12 +22,11 @@ const navLinks = [
   { href: "/studios", label: "Explore Studios" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/#about", label: "About Us" },
-  { href: "/add-studio", label: "Add Studio" },
 ]
 
 const accountLinks = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/studios/new", label: "Add New Studio", icon: PlusCircle },
+  { href: "/add-studio", label: "Add New Studio", icon: PlusCircle },
   { href: "/dashboard/studios", label: "My Studio Listings", icon: Building2 },
   { href: "/dashboard/bookings", label: "My Bookings", icon: CalendarDays },
 ]

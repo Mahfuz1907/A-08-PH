@@ -13,7 +13,6 @@ const StudioContent = async({params}:StudioDetailsProps) => {
     const {id} = await params
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/${id}`)
     const studio = await res.json()
-    console.log(studio)
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-white">
             {/* Back to Studios Link */}

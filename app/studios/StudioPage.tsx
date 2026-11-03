@@ -1,18 +1,13 @@
-import StudioCard from './StudioCard';
-
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
+import CatFilter from './CatFilter';
+import StudioMap from './StudioMap';
 
 const StudioPage = async() => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios`)
     const studios = await res.json()
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/categories`)
+    const categories = await response.json()
+
     return (
         <div className="min-h-screen bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 text-white">
       <div className="max-w-7xl mx-auto">
@@ -29,18 +24,13 @@ const StudioPage = async() => {
           </p>
         </div>
 
+        {/* filter by category */}
+        <div className='mb-5'>  
+            <CatFilter categories={categories} />
+        </div>
+
         {/* Studios Grid */}
-        {studios.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {studios.map((studio: Studio, index: number) => (
-              <StudioCard key={index} studio={studio} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 bg-slate-900/50 rounded-2xl border border-slate-800">
-            <p className="text-slate-400 text-lg">No studios found or database is loading...</p>
-          </div>
-        )}
+        <StudioMap studios={studios} />
       </div>
         </div>
     );
