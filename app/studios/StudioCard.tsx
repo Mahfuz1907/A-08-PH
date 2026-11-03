@@ -55,7 +55,7 @@ const StudioCard = ({studio}:{studio:Studio}) => {
         </div>
         <Button size="sm" className="bg-sky-600 hover:bg-sky-700 text-white">
           <Link href={`/studios`} className="flex flex-row justify-center items-center">
-            Book Space <ArrowRight className="w-4 h-4 ml-1" />
+            View Details <ArrowRight className="w-4 h-4 ml-1" />
           </Link>
         </Button>
       </CardFooter>

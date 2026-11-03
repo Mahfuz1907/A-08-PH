@@ -1,18 +1,11 @@
-'use client'
-
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import FooterSuspense from "./FooterSuspense";
+import FooterCats from "./FooterCats";
+import { Spinner } from "../ui/spinner";
+import FooterForm from "./FooterForm";
+import { Aperture } from "lucide-react";
 
 const Footer = () => {
-    const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Add Sonner toast notification logic here if needed
-    };
-
     return (
         <footer className="bg-slate-950 text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
@@ -21,13 +14,9 @@ const Footer = () => {
           {/* Column 1: Branding & Mission */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <Image 
-                src="/icon.png" 
-                alt="StudioSpace Logo" 
-                width={36} 
-                height={36} 
-                className="object-contain"
-              />
+              <div className="size-9 rounded-xl bg-sky-600 flex items-center justify-center text-white shadow-lg shadow-sky-600/30">
+                <Aperture className="size-5" />
+              </div>
               <span className="text-xl font-bold tracking-tight text-white">
                 StudioSpace
               </span>
@@ -71,36 +60,24 @@ const Footer = () => {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
               Categories
             </h3>
-              <FooterSuspense />
+            <Suspense fallback={
+                <div className="flex items-center gap-4">
+                  <Spinner className='mx-auto' />
+                </div>
+              }>
+                <FooterCats />
+            </Suspense>
           </div>
 
           {/* Column 4: Newsletter & Socials */}
-          <div className="space-y-4 lg:col-span-1">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-              Stay Updated
-            </h3>
-            <p className="text-sm text-slate-400">
-              Subscribe to our newsletter for exclusive studio drops & creative tips.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
-              <Input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-slate-700"
-                required 
-              />
-              <Button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white">
-                Subscribe
-              </Button>
-            </form>
-          </div>
+          <FooterForm />
 
         </div>
 
         {/* Bottom Bar: Copyright & Social Links */}
         <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} StudioSpace. All rights reserved.
+            &copy; 2026 StudioSpace. All rights reserved.
           </p>
           
           <div className="flex items-center space-x-6">

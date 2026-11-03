@@ -1,4 +1,3 @@
-import React from "react";
 import CardsDesign from "./CardsDesign";
 
 interface Category{

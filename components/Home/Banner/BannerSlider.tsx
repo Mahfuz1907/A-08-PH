@@ -1,6 +1,5 @@
 'use client';
 
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -22,7 +21,7 @@ interface Studio {
   description: string;
 }
 
-const BannerSlider = ({studios}:{studios:Studio[]}) => {
+const BannerSlider = ({ studios }: { studios: Studio[] }) => {
     return (
         <Swiper
           modules={[Autoplay, Pagination, EffectFade]}
@@ -31,8 +30,8 @@ const BannerSlider = ({studios}:{studios:Studio[]}) => {
           pagination={{ clickable: true }}
           className="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl"
         >
-          {studios.map((studio:Studio, index:string | number) => (
-            <SwiperSlide key={studio._id}>
+          {studios.map((studio: Studio, index: number) => (
+            <SwiperSlide key={studio._id || index}>
               <div className="relative h-120 sm:h-135 lg:h-150 w-full flex items-center">
                 {/* Background Image with Overlay */}
                 <Image

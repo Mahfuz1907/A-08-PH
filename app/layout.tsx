@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Suspense } from "react";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
@@ -26,13 +25,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Suspense fallback={<div aria-hidden="true" className="h-16" />}>
-          <Navbar />
-        </Suspense>
+        <Navbar />
         <div className="grow">{children}</div>
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
+        <Footer />
+        
         <Toaster/>
       </body>
     </html>

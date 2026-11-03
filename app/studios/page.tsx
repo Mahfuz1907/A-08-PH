@@ -2,13 +2,11 @@ import React, { Suspense } from 'react';
 import StudioPage from './StudioPage';
 import { Spinner } from '@/components/ui/spinner';
 
-
-const StudiosPage = () => {
+const StudioSuspense = () => {
     return (
-        <Suspense 
-        fallback={
+        <Suspense fallback={
         <div className="flex items-center gap-4">
-            <Spinner className='mx-auto' />
+            <Spinner className='mx-auto my-20' />
         </div>
         }>
             <StudioPage />
@@ -16,4 +14,4 @@ const StudiosPage = () => {
     );
 };
 
-export default StudiosPage;
+export default StudioSuspense;
