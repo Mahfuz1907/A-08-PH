@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div>
       <BannerSuspense />
-      {/* <FeatureSuspense /> */}
-      {/* <CategorySuspense /> */}
+      <FeatureSuspense />
+      <CategorySuspense />
       {/* <HowItWorks /> */}
       {/* <HostGuarantee /> */}
     </div>
