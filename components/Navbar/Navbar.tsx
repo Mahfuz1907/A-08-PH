@@ -142,11 +142,11 @@ function UserMenu({ user, onLogout }: { user: SessionUser; onLogout: () => void 
 
 const Navbar = () => {
   const pathname = usePathname()
-  const { user, logout } = useAuth()
-  // const { logout } = useAuth()
-  // const user = {
-  //   name: 'Mahfuz'
-  // }
+  // const { user, logout } = useAuth()
+  const { logout } = useAuth()
+  const user = {
+    name: 'Mahfuz'
+  }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const closeMobileMenu = () => setMobileMenuOpen(false)
