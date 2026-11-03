@@ -11,7 +11,7 @@ export default function Home() {
       <FeatureSuspense />
       <CategorySuspense />
       <HowItWorks />
-      {/* <HostGuarantee /> */}
+      <HostGuarantee />
     </div>
   );
 }
