@@ -10,7 +10,7 @@ export default function Home() {
       <BannerSuspense />
       <FeatureSuspense />
       <CategorySuspense />
-      {/* <HowItWorks /> */}
+      <HowItWorks />
       {/* <HostGuarantee /> */}
     </div>
   );
