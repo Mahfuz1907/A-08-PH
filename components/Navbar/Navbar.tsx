@@ -29,7 +29,7 @@ const navLinks = [
 const accountLinks = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/add-studio", label: "Add New Studio", icon: PlusCircle },
-  { href: "/dashboard/studios", label: "My Studio Listings", icon: Building2 },
+  { href: "/my-listings", label: "My Studio Listings", icon: Building2 },
   { href: "/dashboard/bookings", label: "My Bookings", icon: CalendarDays },
 ]
 
