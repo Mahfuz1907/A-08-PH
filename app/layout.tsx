@@ -3,10 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
-import { Toaster } from "sonner";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import StudioProvider from '@/components/StudioContext/StudioContext'
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToaster } from "@/components/theme-toaster";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,8 +27,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${inter.className} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider>
         <StudioProvider>
         <Suspense fallback={
           <div className="flex items-center gap-4">
@@ -39,8 +42,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="grow">{children}</div>
         <Footer />
         
-        <Toaster/>
+        <ThemeToaster />
         </StudioProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

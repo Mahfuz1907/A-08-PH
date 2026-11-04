@@ -18,7 +18,7 @@ const FooterCats = async() => {
             {
                 categories.map((cat:Category) => 
                 <li key={cat._id}>
-                    <Link href={`/studios?category=${cat.slug}`} className="hover:text-white transition-colors">
+                    <Link href={`/studios?category=${cat.slug}`} className="hover:text-foreground transition-colors">
                         {cat.title}
                     </Link>
                 </li>

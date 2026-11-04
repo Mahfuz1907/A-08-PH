@@ -18,6 +18,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { signOut, useSession } from "@/app/lib/auth-client"
 import { Spinner } from "../ui/spinner"
 import { toast } from "sonner"
+import { ModeToggle } from "./ModeToggle"
+
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -30,7 +32,7 @@ const accountLinks = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/add-studio", label: "Add New Studio", icon: PlusCircle },
   { href: "/my-listings", label: "My Studio Listings", icon: Building2 },
-  { href: "/dashboard/bookings", label: "My Bookings", icon: CalendarDays },
+  { href: "/my-bookings", label: "My Bookings", icon: CalendarDays },
 ]
 
 export default function Navbar() {
@@ -58,7 +60,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md text-white">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Brand Logo */}
@@ -79,8 +81,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   isActive 
-                    ? "text-sky-400 bg-sky-500/10" 
-                    : "text-slate-300 hover:text-white hover:bg-slate-900"
+                    ? "text-sky-600 dark:text-sky-400 bg-sky-500/10" 
+                    : "text-foreground/80 hover:text-foreground hover:bg-muted"
                 }`}
               >
                 {link.label}
@@ -91,13 +93,14 @@ export default function Navbar() {
 
         {/* Right Action / Auth Section */}
         <div className="hidden lg:flex items-center gap-4">
+          <ModeToggle />
           {user ? (
             <div className="relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-900 transition-colors"
+                className="flex items-center gap-2 p-1.5 rounded-full hover:bg-muted transition-colors"
               >
-                <Avatar className="size-9 border border-slate-800">
+                <Avatar className="size-9 border border-border">
                   <AvatarImage src={user?.image || 'https://image.png'} alt={user?.name} />
                   <AvatarFallback className="bg-sky-600 text-white font-semibold">
                     {getInitials(user?.name)}
@@ -107,10 +110,10 @@ export default function Navbar() {
 
               {/* Dropdown Menu */}
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-2 z-50">
-                  <div className="px-3 py-2 border-b border-slate-800 mb-1">
-                    <p className="text-sm font-semibold text-white">{user?.name}</p>
-                    <p className="text-xs text-slate-400 truncate">{user?.email}</p>
+                <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-card border border-border shadow-2xl p-2 z-50">
+                  <div className="px-3 py-2 border-b border-border mb-1">
+                    <p className="text-sm font-semibold text-foreground">{user?.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
                   </div>
                   {accountLinks.map((item) => {
                     const Icon = item.icon
@@ -119,14 +122,14 @@ export default function Navbar() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-colors"
+                        className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-foreground/80 hover:text-foreground hover:bg-muted rounded-xl transition-colors"
                       >
-                        <Icon className="size-4 text-sky-400" />
+                        <Icon className="size-4 text-sky-600 dark:text-sky-400" />
                         {item.label}
                       </Link>
                     )
                   })}
-                  <div className="border-t border-slate-800 my-1" />
+                  <div className="border-t border-border my-1" />
                   <button
                     onClick={() => {
                       setDropdownOpen(false);
@@ -139,7 +142,7 @@ export default function Navbar() {
                         }
                       })
                     }}
-                    className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-rose-400 hover:bg-rose-500/10 rounded-xl transition-colors"
+                    className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-colors"
                   >
                     <LogOut className="size-4" />
                     Logout
@@ -151,7 +154,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <Link 
                 href="/login" 
-                className="text-sm font-medium text-slate-300 hover:text-white px-4 py-2 transition-colors"
+                className="text-sm font-medium text-foreground/80 hover:text-foreground px-4 py-2 transition-colors"
               >
                 Login
               </Link>
@@ -165,38 +168,42 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-slate-300 hover:text-white"
-        >
-          {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        {/* Theme Toggle + Mobile Menu Button */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <ModeToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            className="p-2 text-foreground/80 hover:text-foreground"
+          >
+            {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
+        </div>
 
       </div>
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+        <div className="lg:hidden bg-card border-b border-border px-4 pt-2 pb-6 space-y-3">
           <nav className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="border-t border-slate-800 pt-4">
+          <div className="border-t border-border pt-4">
             {user ? (
               <div className="space-y-2">
                 <div className="px-3 py-1">
-                  <p className="text-sm font-semibold text-white">{user?.name}</p>
-                  <p className="text-xs text-slate-400">{user?.email}</p>
+                  <p className="text-sm font-semibold text-foreground">{user?.name}</p>
+                  <p className="text-xs text-muted-foreground">{user?.email}</p>
                 </div>
                 {accountLinks.map((item) => {
                   const Icon = item.icon
@@ -205,9 +212,9 @@ export default function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-slate-300 hover:bg-slate-800 rounded-lg"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-foreground/80 hover:bg-muted rounded-lg"
                     >
-                      <Icon className="size-4 text-sky-400" />
+                      <Icon className="size-4 text-sky-600 dark:text-sky-400" />
                       {item.label}
                     </Link>
                   )
@@ -224,7 +231,7 @@ export default function Navbar() {
                       }
                     })
                   }}
-                  className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-rose-400 hover:bg-rose-500/10 rounded-lg mt-2"
+                  className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 rounded-lg mt-2"
                 >
                   <LogOut className="size-4" />
                   Logout
@@ -235,7 +242,7 @@ export default function Navbar() {
                 <Link 
                   href="/login" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium border border-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium border border-border text-foreground rounded-lg hover:bg-muted transition-colors"
                 >
                   Login
                 </Link>

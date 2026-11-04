@@ -20,20 +20,20 @@ const FeaturedStudios = async() => {
     const featured = await res.json()
 
     return (
-        <section className="py-16 md:py-24 bg-slate-950 text-white">
+        <section className="py-16 md:py-24 bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 inline-block mb-3">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 inline-block mb-3">
               Handpicked Spaces
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
               Featured Creative Studios
             </h2>
           </div>
-          <Button variant="outline" className="mt-4 md:mt-0 border-slate-800 bg-slate-900 text-white hover:bg-slate-800 hover:text-white">
+          <Button variant="outline" className="mt-4 md:mt-0 border-border bg-card text-foreground hover:bg-muted hover:text-foreground">
             <Link href="/studios" className="flex flex-row justify-center items-center">
               View All Studios <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

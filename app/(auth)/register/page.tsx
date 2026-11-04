@@ -62,13 +62,13 @@ export default function RegisterPage() {
    }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4">
-      <Card className="w-full px-4 max-w-md border-slate-800 bg-slate-900 text-slate-100 shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <Card className="w-full px-4 max-w-md border-border bg-card text-foreground shadow-2xl">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-bold tracking-tight text-white">
+          <CardTitle className="text-2xl font-bold tracking-tight text-foreground">
             Create an account
           </CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardDescription className="text-muted-foreground">
             Enter your details below to create your account
           </CardDescription>
         </CardHeader>
@@ -83,7 +83,7 @@ export default function RegisterPage() {
                 name="name"
                 type="text"
                 placeholder="Your Full Name"
-                className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500"
+                className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-indigo-500"
               />
             </div>
 
@@ -95,7 +95,7 @@ export default function RegisterPage() {
                 name="email"
                 type="email"
                 placeholder="you@example.com"
-                className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500"
+                className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-indigo-500"
               />
             </div>
 
@@ -107,7 +107,7 @@ export default function RegisterPage() {
                 name="imageUrl"
                 type="url"
                 placeholder="https://example.com/photo.jpg"
-                className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500"
+                className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-indigo-500"
               />
             </div>
 
@@ -123,12 +123,12 @@ export default function RegisterPage() {
                   pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
                   title="Password must be at least 6 characters long, contain at least one uppercase letter and one lowercase letter."
                   placeholder="Enter your password"
-                  className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 pr-10"
+                  className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-indigo-500 pr-10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -137,7 +137,7 @@ export default function RegisterPage() {
                   )}
                 </button>
               </div>
-              <p className="text-[11px] text-slate-400 leading-tight">
+              <p className="text-[11px] text-muted-foreground leading-tight">
                 * Must contain at least 8 characters including 1 uppercase & 1 lowercase letter.
               </p>
             </div>
@@ -154,10 +154,10 @@ export default function RegisterPage() {
           {/* Divider */}
           <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-slate-800" />
+              <span className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-slate-900 px-2 text-slate-500">
+              <span className="bg-card px-2 text-muted-foreground/70">
                 Or continue with
               </span>
             </div>
@@ -168,7 +168,7 @@ export default function RegisterPage() {
             onClick={handleGoogleSignIn}
             variant="outline" 
             type="button" 
-            className="w-full border-slate-700 bg-slate-800/40 text-slate-200 hover:bg-slate-800 hover:text-white"
+            className="w-full border-border bg-muted/40 text-foreground/90 hover:bg-muted hover:text-foreground"
           >
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
               <path
@@ -192,9 +192,9 @@ export default function RegisterPage() {
           </Button>
 
           {/* Login Link */}
-          <div className="mt-4 text-center text-sm text-slate-400">
+          <div className="mt-4 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link href="/login" className="text-sky-400 underline hover:text-sky-300">
+            <Link href="/login" className="text-sky-600 dark:text-sky-400 underline hover:text-sky-700 dark:hover:text-sky-300">
               Log in
             </Link>
           </div>

@@ -31,7 +31,7 @@ const CardsDesign = ({cat}:{cat:Category}) => {
             href={`/studios?category=${encodeURIComponent(cat.slug)}`}
             className="group block"
         >
-        <Card className="bg-slate-900 border-slate-800 text-white overflow-hidden hover:border-sky-500/50 transition-all duration-300 relative h-64 flex flex-col justify-end p-6">
+        <Card className="bg-card border-border text-foreground overflow-hidden hover:border-sky-500/50 transition-all duration-300 relative h-64 flex flex-col justify-end p-6">
                   
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
@@ -63,7 +63,7 @@ const CardsDesign = ({cat}:{cat:Category}) => {
                 </span>
             </div>
 
-            <p className="text-xs text-slate-300 line-clamp-2">
+            <p className="text-xs text-white/80 line-clamp-2">
                 {cat.description}
             </p>
 

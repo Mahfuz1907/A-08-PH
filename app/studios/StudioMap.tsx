@@ -29,8 +29,8 @@ const StudioMap = ({studios}:{studios:Studio[]}) => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-slate-900/50 rounded-2xl border border-slate-800">
-            <p className="text-slate-400 text-lg">No studios found or database is loading...</p>
+          <div className="text-center py-20 bg-muted/50 rounded-2xl border border-border">
+            <p className="text-muted-foreground text-lg">No studios found or database is loading...</p>
           </div>
         )}
         </div>

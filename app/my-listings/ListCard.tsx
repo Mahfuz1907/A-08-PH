@@ -24,10 +24,10 @@ interface ListCardProps {
 
 const ListCard = ({ studio }: ListCardProps) => {
   return (
-    <Card className="bg-slate-900/50 border-slate-800 text-white overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col justify-between">
+    <Card className="bg-muted/50 border-border text-foreground overflow-hidden hover:border-foreground/25 transition-all duration-300 flex flex-col justify-between">
       <Link href={`/studios/${studio._id || ''}`}>
         {/* Studio Image */}
-        <div className="relative h-48 w-full overflow-hidden bg-slate-800">
+        <div className="relative h-48 w-full overflow-hidden bg-muted">
           <Image
             src={studio.imageUrl || "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04"}
             alt={studio.title}
@@ -42,21 +42,21 @@ const ListCard = ({ studio }: ListCardProps) => {
         {/* Card Header & Content */}
         <CardHeader className="pb-3 mt-2">
           <CardTitle className="text-xl font-bold tracking-wide truncate">{studio.title}</CardTitle>
-          <div className="flex items-center text-slate-400 text-sm gap-1 mt-1">
-            <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
+          <div className="flex items-center text-muted-foreground text-sm gap-1 mt-1">
+            <MapPin className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
             <span className="truncate">{studio.location}</span>
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-3 pb-3 text-sm text-slate-300">
-          <div className="grid grid-cols-2 gap-2 bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/60">
+        <CardContent className="space-y-3 pb-3 text-sm text-foreground/80">
+          <div className="grid grid-cols-2 gap-2 bg-muted/40 p-2.5 rounded-lg border border-border/60">
             <div className="flex items-center gap-1.5">
-              <DollarSign className="w-4 h-4 text-emerald-400" />
-              <span>Rate: <strong className="text-white">${studio["hourly-rate"]}/hr</strong></span>
+              <DollarSign className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>Rate: <strong className="text-foreground">${studio["hourly-rate"]}/hr</strong></span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-blue-400" />
-              <span>Capacity: <strong className="text-white">{studio.maxCapacity}</strong></span>
+              <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <span>Capacity: <strong className="text-foreground">{studio.maxCapacity}</strong></span>
             </div>
           </div>
           <div className="flex flex-wrap gap-1.5 mt-2">
@@ -64,7 +64,7 @@ const ListCard = ({ studio }: ListCardProps) => {
                 studio.amenities.split(",").map((amen, index) => (
                 <span 
                     key={index}
-                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-sky-300 border border-slate-700/60"
+                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-muted text-sky-700 dark:text-sky-300 border border-border/60"
                 >       
                     {amen.trim()}
                 </span>

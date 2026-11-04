@@ -65,13 +65,13 @@ const DeleteStudio = ({studio}:{studio:Studio}) => {
 
       <AlertDialogContent className="sm:max-w-sm">
         <AlertDialogHeader>
-          <AlertDialogMedia className="rounded-full bg-rose-50 text-rose-500">
+          <AlertDialogMedia className="rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-500">
             <Trash2 aria-hidden="true" />
           </AlertDialogMedia>
           <AlertDialogTitle>Delete Studio</AlertDialogTitle>
           <AlertDialogDescription>
             Are you sure you want to delete{" "}
-            <strong className="font-semibold text-zinc-900">
+            <strong className="font-semibold text-foreground">
               {studio.title}
             </strong>
             ? This action cannot be undone. This will permanently remove the
@@ -80,7 +80,7 @@ const DeleteStudio = ({studio}:{studio:Studio}) => {
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel className="h-9 rounded-md border-zinc-200 bg-white px-4 text-sm text-zinc-700 hover:bg-zinc-50">
+          <AlertDialogCancel className="h-9 rounded-md border-border bg-background px-4 text-sm text-foreground hover:bg-muted">
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction

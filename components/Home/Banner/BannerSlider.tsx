@@ -28,7 +28,7 @@ const BannerSlider = ({ studios }: { studios: Studio[] }) => {
           effect={'fade'}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
-          className="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl"
+          className="rounded-3xl overflow-hidden border border-border shadow-2xl"
         >
           {studios.slice(0, 3).map((studio: Studio, index: number) => (
             <SwiperSlide key={studio._id || index}>
@@ -54,7 +54,7 @@ const BannerSlider = ({ studios }: { studios: Studio[] }) => {
                     {studio.title}
                   </h1>
 
-                  <p className="text-slate-300 text-sm sm:text-base line-clamp-3 max-w-xl">
+                  <p className="text-white/80 text-sm sm:text-base line-clamp-3 max-w-xl">
                     {studio.description}
                   </p>
 

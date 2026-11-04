@@ -14,18 +14,18 @@ const CategoryCards = async() => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/categories`)
     const categories = await res.json()
     return (
-        <section className="py-20 bg-slate-950 text-white">
+        <section className="py-20 bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 inline-block mb-3">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 inline-block mb-3">
             Explore By Type
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             Browse by Studio Categories
           </h2>
-          <p className="text-slate-400 mt-3 text-sm md:text-base">
+          <p className="text-muted-foreground mt-3 text-sm md:text-base">
             Find the ideal creative environment tailored specifically to your production needs.
           </p>
         </div>

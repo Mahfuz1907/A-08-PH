@@ -10,17 +10,17 @@ const FooterForm = () => {
     };
     return (
         <div className="space-y-4 lg:col-span-1">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Stay Updated
             </h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-muted-foreground">
               Subscribe to our newsletter for exclusive studio drops & creative tips.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="space-y-2">
               <Input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-slate-700"
+                className="bg-card border-border text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-ring"
                 required 
               />
               <Button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white">
