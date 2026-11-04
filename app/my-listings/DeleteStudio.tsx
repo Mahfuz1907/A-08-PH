@@ -16,19 +16,35 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-const DeleteStudio = () => {
-    const [open, setOpen] = useState(false);
+interface Studio {
+  _id: string;
+  title: string;
+  category: string;
+  "hourly-rate": number;
+  securityDeposit: number;
+  maxCapacity: number;
+  amenities: string;
+  location: string;
+  imageUrl: string;
+  description: string;
+}
+
+const DeleteStudio = ({studio}:{studio:Studio}) => {
+  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   const handleDelete = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/destinations/${destination._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/delete/${studio._id}`, {
       method: "DELETE",
     });
 
-    console.log("Delete response:", res);
-    router.push("/destinations"); // Navigate back to the destinations list after deletion.
-    // exists, then router.refresh() to re-render with fresh data.
+    if(res.ok){
+        toast.success(`${studio.title} deleted successfully`, {position: 'top-center'})
+        router.refresh()
+    }
+
     setOpen(false);
   };
 
@@ -38,13 +54,13 @@ const DeleteStudio = () => {
         render={
           <Button
             type="button"
-            variant="outline"
-            className="h-10 gap-2 rounded-md border-rose-200 bg-white px-4 text-sm text-rose-500 hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600"
-          />
+            variant="destructive" 
+            className="bg-red-600/80 hover:bg-red-600 text-white flex items-center gap-2"
+            />
         }
       >
         <Trash2 className="h-4 w-4" aria-hidden="true" />
-        Cancel
+        Delete
       </AlertDialogTrigger>
 
       <AlertDialogContent className="sm:max-w-sm">
@@ -52,11 +68,11 @@ const DeleteStudio = () => {
           <AlertDialogMedia className="rounded-full bg-rose-50 text-rose-500">
             <Trash2 aria-hidden="true" />
           </AlertDialogMedia>
-          <AlertDialogTitle>Delete Travel Package</AlertDialogTitle>
+          <AlertDialogTitle>Delete Studio</AlertDialogTitle>
           <AlertDialogDescription>
             Are you sure you want to delete{" "}
             <strong className="font-semibold text-zinc-900">
-              {destination.destinationName}
+              {studio.title}
             </strong>
             ? This action cannot be undone. This will permanently remove the
             package and all its data from the servers.

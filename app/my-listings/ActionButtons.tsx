@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { Edit, Trash2 } from 'lucide-react';
+import { Edit } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import DeleteStudio from './DeleteStudio';
 
 interface Studio {
   _id: string;
@@ -25,10 +25,9 @@ const ActionButton = async({studio}:{studio:Studio}) => {
             Update
             </Button>
             </Link>
-            <Button variant="destructive" className="bg-red-600/80 hover:bg-red-600 text-white flex items-center gap-2">
-            <Trash2 className="w-4 h-4" />
-            Delete
-            </Button>
+
+            {/* studio delete */}
+            <DeleteStudio studio={studio} />
         </div>
     );
 };
