@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
 import { 
   Aperture, 
@@ -15,7 +15,9 @@ import {
 } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "../ui/button"
+import { signOut, useSession } from "@/app/lib/auth-client"
+import { Spinner } from "../ui/spinner"
+import { toast } from "sonner"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -32,25 +34,27 @@ const accountLinks = [
 ]
 
 export default function Navbar() {
+  const {data:session, isPending} = useSession()
+  const user = session?.user
+  const router = useRouter()
 
   const pathname = usePathname()
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
-  // Dummy login state (test korar jonno)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const dummyUser = {
-    name: "Mahfuz Tamim",
-    email: "mahfuz@studiospace.com",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
-  }
-
   const getInitials = (name: string) => {
     return name
       ? name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
       : "U"
+  }
+
+  if(isPending){
+    return(
+      <div className="flex items-center gap-4">
+        <Spinner className="mx-auto my-5" />
+      </div>
+    )
   }
 
   return (
@@ -87,25 +91,16 @@ export default function Navbar() {
 
         {/* Right Action / Auth Section */}
         <div className="hidden lg:flex items-center gap-4">
-          
-          {/* Test Auth Toggle Button */}
-          <Button 
-            onClick={() => setIsLoggedIn(!isLoggedIn)}
-            className="text-[11px] px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 hover:text-white border border-slate-700"
-          >
-            Toggle Auth: {isLoggedIn ? "LoggedIn" : "LoggedOut"}
-          </Button>
-
-          {isLoggedIn ? (
+          {user ? (
             <div className="relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-900 transition-colors"
               >
                 <Avatar className="size-9 border border-slate-800">
-                  <AvatarImage src={dummyUser.image} alt={dummyUser.name} />
+                  <AvatarImage src={user?.image || 'https://image.png'} alt={user?.name} />
                   <AvatarFallback className="bg-sky-600 text-white font-semibold">
-                    {getInitials(dummyUser.name)}
+                    {getInitials(user?.name)}
                   </AvatarFallback>
                 </Avatar>
               </button>
@@ -114,8 +109,8 @@ export default function Navbar() {
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-2 z-50">
                   <div className="px-3 py-2 border-b border-slate-800 mb-1">
-                    <p className="text-sm font-semibold text-white">{dummyUser.name}</p>
-                    <p className="text-xs text-slate-400 truncate">{dummyUser.email}</p>
+                    <p className="text-sm font-semibold text-white">{user?.name}</p>
+                    <p className="text-xs text-slate-400 truncate">{user?.email}</p>
                   </div>
                   {accountLinks.map((item) => {
                     const Icon = item.icon
@@ -134,8 +129,15 @@ export default function Navbar() {
                   <div className="border-t border-slate-800 my-1" />
                   <button
                     onClick={() => {
-                      setDropdownOpen(false)
-                      setIsLoggedIn(false)
+                      setDropdownOpen(false);
+                      signOut({
+                        fetchOptions: {
+                          onSuccess: () => {
+                            toast.success('Logged out successfully', {position: 'top-center'})
+                            router.push('/login')
+                          }
+                        }
+                      })
                     }}
                     className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-rose-400 hover:bg-rose-500/10 rounded-xl transition-colors"
                   >
@@ -190,11 +192,11 @@ export default function Navbar() {
           </nav>
 
           <div className="border-t border-slate-800 pt-4">
-            {isLoggedIn ? (
+            {user ? (
               <div className="space-y-2">
                 <div className="px-3 py-1">
-                  <p className="text-sm font-semibold text-white">{dummyUser.name}</p>
-                  <p className="text-xs text-slate-400">{dummyUser.email}</p>
+                  <p className="text-sm font-semibold text-white">{user?.name}</p>
+                  <p className="text-xs text-slate-400">{user?.email}</p>
                 </div>
                 {accountLinks.map((item) => {
                   const Icon = item.icon
@@ -212,8 +214,15 @@ export default function Navbar() {
                 })}
                 <button
                   onClick={() => {
-                    setMobileMenuOpen(false)
-                    setIsLoggedIn(false)
+                    setMobileMenuOpen(false);
+                    signOut({
+                      fetchOptions: {
+                        onSuccess: () => {
+                          toast.success('Logged out successfully', {position: 'top-center'})
+                          router.push('login')
+                        }
+                      }
+                    })
                   }}
                   className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-rose-400 hover:bg-rose-500/10 rounded-lg mt-2"
                 >
