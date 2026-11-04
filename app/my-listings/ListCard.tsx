@@ -24,9 +24,8 @@ interface ListCardProps {
 
 const ListCard = ({ studio }: ListCardProps) => {
   return (
-    <Link href={`/studios/${studio._id || ''}`}>
     <Card className="bg-slate-900/50 border-slate-800 text-white overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col justify-between">
-      <div>
+      <Link href={`/studios/${studio._id || ''}`}>
         {/* Studio Image */}
         <div className="relative h-48 w-full overflow-hidden bg-slate-800">
           <Image
@@ -73,14 +72,13 @@ const ListCard = ({ studio }: ListCardProps) => {
             }
           </div>
         </CardContent>
-      </div>
+      </Link>
 
       {/* Action Buttons (Update & Delete - No functionality required for now) */}
       <CardFooter className="pt-2 w-full">
         <ActionButton studio={studio} />
       </CardFooter>
     </Card>
-    </Link>
   );
 }
 
