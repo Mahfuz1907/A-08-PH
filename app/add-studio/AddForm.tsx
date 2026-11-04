@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Building2, DollarSign, MapPin, ImageIcon, FileText } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useSession } from "../lib/auth-client";
+import { uploadUrlToImgbb } from "@/lib/UploadImage";
 
 interface Category{
     _id: string,
@@ -20,12 +22,18 @@ interface Category{
 
 const AddForm = ({categories}:{categories:Category[]}) => {
     const router = useRouter()
+    const {data:session} = useSession()
 
     const handleSubmit = async(e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const formElement = new FormData(e.currentTarget)
     const form = Object.fromEntries(formElement)
+
+    const userInputImageUrl = form.imageUrl as string
+    const finalImageUrl = await uploadUrlToImgbb(userInputImageUrl)
+    form.imageUrl = finalImageUrl
+    
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/add-studio`, {
         method: 'POST',
@@ -37,11 +45,13 @@ const AddForm = ({categories}:{categories:Category[]}) => {
 
     const studioData = await res.json()
 
-    if(studioData.acknowledged){
+    if(res.ok && (studioData.acknowledged || studioData.insertedId)){
       toast.success(`${form.title} added successfully`, { position: "top-center" })
       router.push('/my-listings')
+    }else {
+      toast.error("Failed to add studio. Please try again.", {position: 'top-center'});
     }
-  };
+    };
 
     return (
         <Card className="bg-slate-900 border-slate-800 px-5 py-10 text-white shadow-xl w-full mx-auto flex flex-col justify-between items-start gap-6">
@@ -150,7 +160,7 @@ const AddForm = ({categories}:{categories:Category[]}) => {
                 <ImageIcon className="w-4 h-4 text-sky-400" /> Studio Image URL
               </label>
               <Input 
-                type="url"
+                type="string"
                 name="imageUrl" 
                 placeholder="https://images.unsplash.com/..." 
                 className="bg-slate-950 border-slate-800 text-white placeholder:text-slate-600 focus-visible:ring-sky-500"
@@ -188,8 +198,7 @@ const AddForm = ({categories}:{categories:Category[]}) => {
                 <Input 
                   type="text"
                   name="hostName"
-                  // value={user?.displayName || "Mahfuz Rahman"}
-                  value={'Mahfuz Tamim'}
+                  value={session?.user?.name}
                   readOnly
                   className="bg-slate-900 border-slate-800 text-slate-400 cursor-not-allowed"
                 />
@@ -199,8 +208,7 @@ const AddForm = ({categories}:{categories:Category[]}) => {
                 <Input 
                   type="email"
                   name="hostEmail"
-                  // value={user?.email || "mahfuz@studiospace.com"}
-                  value={'mahfuztamim1907@gmail.com'}
+                  value={session?.user?.email}
                   readOnly
                   className="bg-slate-900 border-slate-800 text-slate-400 cursor-not-allowed"
                 />

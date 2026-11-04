@@ -13,9 +13,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signUp } from "@/app/lib/auth-client";
+import { signIn, signUp } from "@/app/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { uploadUrlToImgbb } from "@/lib/UploadImage";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,6 +27,10 @@ export default function RegisterPage() {
     const formData = new FormData(e.currentTarget)
     const userData = Object.fromEntries(formData) as Record<string, string>
 
+    const userImageUrl = userData.imageUrl
+    const finalImageUrl = await uploadUrlToImgbb(userImageUrl)
+    userData.imageUrl = finalImageUrl
+
     const { data, error } = await signUp.email({
         name: userData.name, 
         email: userData.email, 
@@ -34,10 +39,25 @@ export default function RegisterPage() {
     });
     
     if(data){
-        toast.success(`${userData.name} registered successfully`, { position: "top-center" })
+        toast.success(`User registered successfully`, { position: "top-center" })
+        console.log(data)
         router.push('/')
     }else if(error){
         toast.error(`Registration failed`, {position: 'top-center'})
+        console.log(error)
+    }
+   }
+
+   const handleGoogleSignIn = async() => {
+    const {data, error} = await signIn.social({
+      provider: 'google'
+    })
+
+    if(data){
+      toast.success('User registered successfully', {position: 'top-center'})
+      router.push('/')
+    }else if(error){
+      toast.error('Registration failed', {position: 'top-center'})
     }
    }
 
@@ -99,6 +119,9 @@ export default function RegisterPage() {
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
+                  minLength={6}
+                  pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                  title="Password must be at least 6 characters long, contain at least one uppercase letter and one lowercase letter."
                   placeholder="Enter your password"
                   className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 pr-10"
                 />
@@ -115,7 +138,7 @@ export default function RegisterPage() {
                 </button>
               </div>
               <p className="text-[11px] text-slate-400 leading-tight">
-                * Must contain 8 chars, 1 uppercase & 1 lowercase letter.
+                * Must contain at least 8 characters including 1 uppercase & 1 lowercase letter.
               </p>
             </div>
 
@@ -142,6 +165,7 @@ export default function RegisterPage() {
 
           {/* Social Google Button */}
           <Button 
+            onClick={handleGoogleSignIn}
             variant="outline" 
             type="button" 
             className="w-full border-slate-700 bg-slate-800/40 text-slate-200 hover:bg-slate-800 hover:text-white"

@@ -30,7 +30,7 @@ const BannerSlider = ({ studios }: { studios: Studio[] }) => {
           pagination={{ clickable: true }}
           className="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl"
         >
-          {studios.map((studio: Studio, index: number) => (
+          {studios.slice(0, 3).map((studio: Studio, index: number) => (
             <SwiperSlide key={studio._id || index}>
               <div className="relative h-120 sm:h-135 lg:h-150 w-full flex items-center">
                 {/* Background Image with Overlay */}

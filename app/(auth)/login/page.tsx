@@ -40,6 +40,19 @@ export default function LoginPage() {
     }
   }
 
+  const handleGoogleSignIn = async() => {
+    const {data, error} = await signIn.social({
+      provider: 'google'
+    })
+
+    if(data){
+      toast.success('User registered successfully', {position: 'top-center'})
+      router.push('/')
+    }else if(error){
+      toast.error('Registration failed', {position: 'top-center'})
+    }
+   }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4">
       <Card className="w-full px-4 max-w-md border-slate-800 bg-slate-900 text-slate-100 shadow-2xl">
@@ -123,6 +136,7 @@ export default function LoginPage() {
           {/* Social Google Button (Google Only) */}
           <Button 
             variant="outline" 
+            onClick={handleGoogleSignIn}
             type="button" 
             className="w-full border-slate-700 bg-slate-800/40 text-slate-200 hover:bg-slate-800 hover:text-white"
           >

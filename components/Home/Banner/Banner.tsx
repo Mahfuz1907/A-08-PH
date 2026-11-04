@@ -1,7 +1,7 @@
 import BannerSlider from "./BannerSlider";
 
 const Banner = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/featured-studios`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios`);
     const studios = await res.json(); 
     
     return (
