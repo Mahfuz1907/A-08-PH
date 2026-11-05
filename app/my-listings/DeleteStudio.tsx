@@ -92,7 +92,7 @@ const DeleteStudio = ({studio}:{studio:Studio}) => {
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
-    </AlertDialog>
+        </AlertDialog>
     );
 };
 
