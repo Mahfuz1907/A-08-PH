@@ -10,18 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Category } from "@/lib/type";
 import { useSearchParams } from "next/navigation";
 import { useContext, useEffect } from "react";
 
-interface Category{
-    _id: string,
-    title: string, 
-    slug: string,
-    description: string,
-    icon: string, 
-    count: string,
-    imageUrl: string
-}
 
 interface Item{
     label: string,

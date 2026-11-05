@@ -1,15 +1,6 @@
 import React from 'react';
 import BookingCard from './BookingCard';
-
-interface BookingCardProps {
-    _id: string;
-    studioTitle: string;
-    bookingDate: string;
-    startTime: string;
-    endTime: string;
-    ["hourly-rate"]: number;
-    status: string;
-}
+import { Bookings } from '@/lib/type';
 
 const BookingsPage = async() => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings`)
@@ -29,7 +20,7 @@ const BookingsPage = async() => {
         </div>
     ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {bookings.map((booking: BookingCardProps) => (
+            {bookings.map((booking: Bookings) => (
                 <BookingCard 
                     key={booking._id} 
                     booking={booking} 

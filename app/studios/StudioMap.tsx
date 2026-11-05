@@ -3,16 +3,8 @@
 import { useContext } from 'react';
 import StudioCard from './StudioCard';
 import { StudioContext } from '@/components/StudioContext/StudioContext';
+import { Studio } from '@/lib/type';
 
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const StudioMap = ({studios}:{studios:Studio[]}) => {
     const {byCategory} = useContext(StudioContext)

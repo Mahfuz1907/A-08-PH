@@ -1,14 +1,5 @@
+import { Category } from '@/lib/type';
 import Link from 'next/link';
-
-interface Category{
-    _id: string,
-    title: string, 
-    slug: string,
-    description: string,
-    icon: string, 
-    count: string,
-    imageUrl: string
-}
 
 const FooterCats = async() => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/categories`)

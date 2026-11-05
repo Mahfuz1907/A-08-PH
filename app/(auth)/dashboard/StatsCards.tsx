@@ -4,24 +4,17 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Layers, Mic2 } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
+import { Bookings } from '@/lib/type';
 
-interface StatsCardsProps {
-    email?: string;
+interface UserProps{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    user?: any
 }
 
-interface BookingCardProps {
-    _id: string;
-    studioTitle: string;
-    bookingDate: string;
-    startTime: string;
-    endTime: string;
-    ["hourly-rate"]: number;
-    status: string;
-}
-
-export default function StatsCards({ email }: StatsCardsProps) {
+export default function StatsCards({user}:UserProps) {
     const [stats, setStats] = useState({ totalBookings: 0, totalListings: 0, pendingBookings: 0 });
     const [loading, setLoading] = useState(true);
+    const email = user?.email
 
     useEffect(() => {
         if (!email) return;
@@ -38,7 +31,7 @@ export default function StatsCards({ email }: StatsCardsProps) {
 
                 // Correct pending bookings calculation using filter
                 const pendingCount = Array.isArray(bookings) 
-                    ? bookings.filter((b: BookingCardProps) => b.status === 'Pending').length 
+                    ? bookings.filter((b: Bookings) => b.status === 'Pending').length 
                     : 0;
 
                 setStats({

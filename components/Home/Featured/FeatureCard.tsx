@@ -1,19 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Studio } from '@/lib/type';
 import { ArrowRight, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const FeatureCard = ({studio}:{studio:Studio}) => {
     return (

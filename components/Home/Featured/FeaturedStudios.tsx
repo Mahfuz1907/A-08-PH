@@ -3,17 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FeatureCard from "./FeatureCard";
-
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
-
+import { Studio } from "@/lib/type";
 
 const FeaturedStudios = async() => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/featured-studios`)

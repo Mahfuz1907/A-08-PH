@@ -59,7 +59,7 @@ const DashboardPage = () => {
             </Card>
 
             {/* Quick Stats Grid */}
-            <StatsCards email={user?.email} />
+            <StatsCards user={user} />
 
             {/* Quick Navigation Action Cards */}
             <div>

@@ -4,16 +4,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { Studio } from "@/lib/type";
 
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const StudioCard = ({studio}:{studio:Studio}) => {
     return (

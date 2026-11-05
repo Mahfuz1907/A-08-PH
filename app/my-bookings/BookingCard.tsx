@@ -1,17 +1,9 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import CancelBooking from "./CancelBooking";
+import { Bookings } from "@/lib/type";
 
-interface BookingCardProps {
-    _id: string;
-    studioTitle: string;
-    bookingDate: string;
-    startTime: string;
-    endTime: string;
-    ["hourly-rate"]: number;
-    status: string;
-}
 
-export default function BookingCard({ booking }: {booking: BookingCardProps}) {
+export default function BookingCard({ booking }: {booking: Bookings}) {
     return (
         <Card className="bg-card border-border text-foreground flex flex-col justify-between">
             <CardHeader className="space-y-2 pb-3">

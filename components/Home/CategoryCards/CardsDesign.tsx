@@ -4,16 +4,8 @@ import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Camera, Mic, Music, Palette, Film, ArrowRight, LucideIcon } from "lucide-react";
+import { Category } from '@/lib/type';
 
-interface Category{
-    _id: string,
-    title: string, 
-    slug: string,
-    description: string,
-    icon: string, 
-    count: string,
-    imageUrl: string
-}
 
 const iconMap: { [key: string]: LucideIcon } = {
   Camera: Camera,

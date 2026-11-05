@@ -10,24 +10,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Studio } from "@/lib/type";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-  securityDeposit: number;
-  maxCapacity: number;
-  amenities: string;
-  hostName: string;
-  hostEmail: string
-}
 
 const BookingDialogueBox = ({studio}:{studio:Studio}) => {
     const router = useRouter()

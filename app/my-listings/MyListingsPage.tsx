@@ -2,19 +2,8 @@ import { auth } from '@/auth';
 import { Layers } from 'lucide-react';
 import { headers } from 'next/headers';
 import ListCard from './ListCard';
+import { Studio } from '@/lib/type';
 
-interface Studio {
-  _id: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  securityDeposit: number;
-  maxCapacity: number;
-  amenities: string;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const MyListingsPage = async() => {
     const session = await auth.api.getSession({

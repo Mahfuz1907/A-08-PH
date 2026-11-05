@@ -9,16 +9,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useSession } from "../lib/auth-client";
 import { uploadUrlToImgbb } from "@/lib/UploadImage";
+import { Category } from "@/lib/type";
 
-interface Category{
-    _id: string,
-    title: string, 
-    slug: string,
-    description: string,
-    icon: string, 
-    count: string,
-    imageUrl: string
-}
 
 const AddForm = ({categories}:{categories:Category[]}) => {
     const router = useRouter()

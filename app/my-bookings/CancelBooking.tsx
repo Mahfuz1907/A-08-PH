@@ -2,23 +2,14 @@
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogMedia, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+import { Bookings } from '@/lib/type';
 import { Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 
-interface BookingCardProps {
-    _id: string;
-    studioTitle: string;
-    bookingDate: string;
-    startTime: string;
-    endTime: string;
-    ["hourly-rate"]: number;
-    status: string;
-}
 
-
-const CancelBooking = ({booking}:{booking:BookingCardProps}) => {
+const CancelBooking = ({booking}:{booking:Bookings}) => {
     const [open, setOpen] = useState(false);
     const router = useRouter();
 

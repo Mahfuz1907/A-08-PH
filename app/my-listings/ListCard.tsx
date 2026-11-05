@@ -4,25 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, DollarSign, Users } from "lucide-react";
 import ActionButton from "./ActionButtons";
 import Link from "next/link";
+import { Studio } from "@/lib/type";
 
-interface Studio {
-  _id: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  securityDeposit: number;
-  maxCapacity: number;
-  amenities: string;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
-
-interface ListCardProps {
-  studio: Studio;
-}
-
-const ListCard = ({ studio }: ListCardProps) => {
+const ListCard = ({ studio }: {studio: Studio}) => {
   return (
     <Card className="bg-muted/50 border-border text-foreground overflow-hidden hover:border-foreground/25 transition-all duration-300 flex flex-col justify-between">
       <Link href={`/studios/${studio._id || ''}`}>

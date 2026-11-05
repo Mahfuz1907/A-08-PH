@@ -17,19 +17,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Studio } from "@/lib/type";
 
-interface Studio {
-  _id: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  securityDeposit: number;
-  maxCapacity: number;
-  amenities: string;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const DeleteStudio = ({studio}:{studio:Studio}) => {
   const [open, setOpen] = useState(false);

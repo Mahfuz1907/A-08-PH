@@ -4,36 +4,12 @@ import { Button } from '@/components/ui/button'
 import { CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { Category, Studio } from '@/lib/type'
 import { uploadUrlToImgbb } from '@/lib/UploadImage'
 import { DollarSign, FileText, ImageIcon, MapPin, Save } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
-
-interface Category{
-    _id: string,
-    title: string, 
-    slug: string,
-    description: string,
-    icon: string, 
-    count: string,
-    imageUrl: string
-}
-
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-  securityDeposit: number;
-  maxCapacity: number;
-  amenities: string;
-  hostName: string;
-  hostEmail: string
-}
 
 interface EditFormTypes{
     categories: Category[],

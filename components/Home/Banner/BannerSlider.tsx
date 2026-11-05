@@ -10,16 +10,8 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { Studio } from "@/lib/type";
 
-interface Studio {
-  _id?: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const BannerSlider = ({ studios }: { studios: Studio[] }) => {
     return (

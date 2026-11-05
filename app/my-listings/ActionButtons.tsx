@@ -2,19 +2,8 @@ import { Button } from '@/components/ui/button';
 import { Edit } from 'lucide-react';
 import Link from 'next/link';
 import DeleteStudio from './DeleteStudio';
+import { Studio } from '@/lib/type';
 
-interface Studio {
-  _id: string;
-  title: string;
-  category: string;
-  "hourly-rate": number;
-  securityDeposit: number;
-  maxCapacity: number;
-  amenities: string;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
 
 const ActionButton = async({studio}:{studio:Studio}) => {
     return (
