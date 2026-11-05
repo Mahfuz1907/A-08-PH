@@ -10,7 +10,7 @@ import { SearchX } from 'lucide-react';
 const StudioMap = ({studios}:{studios:Studio[]}) => {
     const {byCategory} = useContext(StudioContext)
     let filterdStudio = studios.filter((studio) => studio.category === byCategory)
-    if(byCategory === null || byCategory === ''){
+    if(byCategory === ''){
         filterdStudio = [...studios]
     }
     return (
