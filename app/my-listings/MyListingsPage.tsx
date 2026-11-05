@@ -1,8 +1,10 @@
 import { auth } from '@/auth';
-import { Layers } from 'lucide-react';
+import { Layers, PlusCircle } from 'lucide-react';
 import { headers } from 'next/headers';
 import ListCard from './ListCard';
 import { Studio } from '@/lib/type';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 
 const MyListingsPage = async() => {
@@ -40,14 +42,20 @@ const MyListingsPage = async() => {
                         ))}
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center py-20 bg-muted/30 rounded-2xl border border-border/80 text-center px-4">
-                        <div className="bg-muted/50 p-4 rounded-full text-indigo-600 dark:text-indigo-400 mb-4">
+                    <div className="flex flex-col items-center justify-center py-16 px-4 bg-muted/30 rounded-2xl border border-border text-center">
+                        <div className="bg-muted/50 p-4 rounded-full text-indigo-500 mb-4">
                             <Layers className="w-10 h-10" />
                         </div>
-                        <h3 className="text-xl font-semibold text-foreground/90">No Listings Found</h3>
-                        <p className="text-muted-foreground text-sm max-w-sm mt-1">
-                            You haven&apos;t added any studio spaces yet. Go to the add studio page to create your first listing!
+                        <h3 className="text-xl font-semibold text-foreground">No Listings Found</h3>
+                        <p className="text-muted-foreground text-sm max-w-sm mt-1 mb-6">
+                            You haven&apos;t added any studio spaces yet. Create your first listing to start accepting bookings!
                         </p>
+                        <Link href="/add-studio">
+                            <Button className="bg-indigo-600 hover:bg-indigo-500 text-white flex items-center gap-2">
+                            <PlusCircle className="w-4 h-4" />
+                                Create New Studio
+                            </Button>
+                        </Link>
                     </div>
                 )}
 

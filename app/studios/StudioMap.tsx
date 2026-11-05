@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import StudioCard from './StudioCard';
 import { StudioContext } from '@/components/StudioContext/StudioContext';
 import { Studio } from '@/lib/type';
+import { SearchX } from 'lucide-react';
 
 
 const StudioMap = ({studios}:{studios:Studio[]}) => {
@@ -21,8 +22,14 @@ const StudioMap = ({studios}:{studios:Studio[]}) => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-muted/50 rounded-2xl border border-border">
-            <p className="text-muted-foreground text-lg">No studios found or database is loading...</p>
+          <div className="flex flex-col items-center justify-center py-16 px-4 bg-muted/30 rounded-2xl border border-border text-center">
+            <div className="bg-muted/50 p-4 rounded-full text-amber-500 mb-4">
+              <SearchX className="w-10 h-10" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">No Studios Available</h3>
+            <p className="text-muted-foreground text-sm max-w-sm mt-1">
+              There are currently no studios listed or matching your search criteria. Please check back later!
+            </p>
           </div>
         )}
         </div>
