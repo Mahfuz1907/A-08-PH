@@ -1,6 +1,15 @@
 import React, { Suspense } from 'react';
 import StudioPage from './StudioPage';
 import { Spinner } from '@/components/ui/spinner';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Explore Studios | Studio Space",
+  description: "A modern studio space for creative professionals",
+  icons:{
+    icon: '/icon.png'
+  }
+};
 
 const StudioSuspense = () => {
     return (

@@ -11,7 +11,6 @@ import { Spinner } from '@/components/ui/spinner';
 
 const DashboardPage = () => {
     const { data: session, isPending } = useSession();
-
     const user = session?.user;
     const userRole = 'Studio Member';
 

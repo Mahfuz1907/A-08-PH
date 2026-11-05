@@ -20,12 +20,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**', // Eta dile je kono HTTPS URL er image load nibe
-      },
-      {
-        protocol: 'http',
-        hostname: '**', // HTTP URL er jonno (jodi lage)
-      },
+        hostname: '**',
+      }
     ],
   },
 };

@@ -1,6 +1,15 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, Mic2, AlertCircle } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Invalid Url | Studio Space",
+  description: "A modern studio space for creative professionals",
+  icons:{
+    icon: '/icon.png'
+  }
+};
 
 export default function NotFound() {
     return (
