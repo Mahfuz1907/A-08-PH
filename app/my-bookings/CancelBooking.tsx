@@ -54,9 +54,9 @@ const CancelBooking = ({booking}:{booking:BookingCardProps}) => {
           <AlertDialogMedia className="rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-500">
             <Trash2 aria-hidden="true" />
           </AlertDialogMedia>
-          <AlertDialogTitle>Delete Studio</AlertDialogTitle>
+          <AlertDialogTitle>Cancel Booking</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete{" "}
+            Are you sure you want to cancel booking of {" "}
             <strong className="font-semibold text-foreground">
               {booking.studioTitle}
             </strong>
@@ -67,14 +67,14 @@ const CancelBooking = ({booking}:{booking:BookingCardProps}) => {
 
         <AlertDialogFooter>
           <AlertDialogCancel className="h-9 rounded-md border-border bg-background px-4 text-sm text-foreground hover:bg-muted">
-            Cancel
+            Close
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleCancel}
             className="h-9 gap-2 rounded-md bg-rose-600 px-4 text-sm font-semibold text-white hover:bg-rose-700"
           >
             <Trash2 className="h-4 w-4" aria-hidden="true" />
-            Delete Package
+            Cancel Booking
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

@@ -1,6 +1,7 @@
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Building2 } from 'lucide-react'
 import EditForm from './EditForm'
+import { notFound } from 'next/navigation'
 
 interface StudioEditProps{
     params: Promise<{id: string}>
@@ -8,8 +9,22 @@ interface StudioEditProps{
 
 const StudioEditPage = async ({params}:StudioEditProps) => {
     const {id} = await params
+
+    if(!id){
+      notFound()
+    }
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/${id}`)
+
+    if(!res.ok){
+      notFound()
+    }
+
     const studio = await res.json()
+
+    if(!studio){
+      notFound()
+    }
 
     const categoryResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/categories`)
     const categories = await categoryResponse.json()
