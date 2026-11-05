@@ -24,7 +24,7 @@ const FeatureCard = ({studio}:{studio:Studio}) => {
                    </span>
                    {/* Demo Rating Badge */}
                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold bg-background/80 text-amber-600 dark:text-amber-400 border border-amber-500/30 backdrop-blur-md z-10 flex items-center gap-1">
-                       ⭐ 4.8
+                       ⭐ {studio.rating}
                    </span>
                </div>
                <CardHeader className="p-5 pb-2">
