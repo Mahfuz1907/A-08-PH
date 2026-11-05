@@ -30,7 +30,7 @@ const StudioEditPage = async ({params}:StudioEditProps) => {
     const categories = await categoryResponse.json()
 
     return(
-        <div className='max-w-3xl mx-auto py-10 px-4 sm:px-6'>
+        <div className='max-w-4xl mx-auto py-10 px-4 sm:px-6'>
         <Card className="bg-card border-border px-5 py-10 text-foreground shadow-xl w-full mx-auto flex flex-col justify-between items-start gap-6">
         <CardHeader className="space-y-1 w-full flex flex-col justify-between items-start gap-2">
           <div className="flex items-center space-x-2 text-sky-600 dark:text-sky-400 mb-1">

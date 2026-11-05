@@ -29,9 +29,10 @@ export interface Studio {
   "hourly-rate": number;
   securityDeposit: number;
   maxCapacity: number;
+  rating: number;
   location: string;
   imageUrl: string;
-  amenities: string;
+  amenities: string[];
   description: string;
   hostName: string;
   hostEmail: string

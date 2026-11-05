@@ -41,6 +41,7 @@ const AddForm = ({categories}:{categories:Category[]}) => {
       "hourly-rate": form["hourly-rate"],
       securityDeposit: form.securityDeposit,
       maxCapacity: form.maxCapacity,
+      rating: form.rating,
       location: form.location,
       imageUrl: form.imageUrl,
       amenities,
@@ -160,6 +161,7 @@ const AddForm = ({categories}:{categories:Category[]}) => {
               </label>
               <Input 
                 type="number"
+                step="any"
                 name="rating" 
                 placeholder="e.g., 5" 
                 className="bg-background border-border text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-sky-500"
@@ -208,7 +210,6 @@ const AddForm = ({categories}:{categories:Category[]}) => {
                     <Checkbox
                       id="wifi"
                       name="wifi"
-                      className="bg-background data-[state=checked]:bg-sky-600 data-[state=checked]:text-white dark:data-[state=checked]:bg-sky-500"
                     />
                     <FieldLabel
                       htmlFor="wifi"

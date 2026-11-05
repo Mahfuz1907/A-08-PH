@@ -44,8 +44,8 @@ const ListCard = ({ studio }: {studio: Studio}) => {
             </div>
           </div>
           <div className="flex flex-wrap gap-1.5 mt-2">
-            {studio.amenities && typeof studio.amenities === 'string' && 
-                studio.amenities.split(",").map((amen, index) => (
+            { 
+                studio.amenities.map((amen, index) => (
                 <span 
                     key={index}
                     className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-muted text-sky-700 dark:text-sky-300 border border-border/60"
