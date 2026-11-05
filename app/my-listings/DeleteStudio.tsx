@@ -18,6 +18,7 @@ import {
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Studio } from "@/lib/type";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 
 const DeleteStudio = ({studio}:{studio:Studio}) => {
@@ -25,8 +26,12 @@ const DeleteStudio = ({studio}:{studio:Studio}) => {
   const router = useRouter();
 
   const handleDelete = async () => {
+    const token = await getTokenFromClient()
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/delete/${studio._id}`, {
       method: "DELETE",
+      headers:{
+        authorization: `Bearer ${token}`
+      }
     });
 
     if(res.ok){

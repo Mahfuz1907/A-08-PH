@@ -150,9 +150,9 @@ const StudioContent = async({params}:StudioDetailsProps) => {
                         <h2 className="text-xl font-bold mb-4 text-foreground">Amenities & Equipment</h2>
                         <div className="flex flex-wrap gap-2">
                             {studio.amenities ? (
-                                studio.amenities.split(',').map((amenity: string, idx: number) => (
+                                studio.amenities.map((amenity: string, idx: number) => (
                                     <span key={idx} className="px-3 py-1.5 rounded-xl text-xs font-medium bg-muted text-sky-700 dark:text-sky-300 border border-border">
-                                        ✓ {amenity.trim()}
+                                        ✓ {amenity}
                                     </span>
                                 ))
                             ) : (

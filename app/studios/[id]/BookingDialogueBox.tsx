@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { Studio } from "@/lib/type";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -42,21 +43,24 @@ const BookingDialogueBox = ({studio}:{studio:Studio}) => {
             status: "Pending"
         };
 
+        const token = await getTokenFromClient()
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/add-bookings`, {
             method: 'POST',
             headers: {
-                "Content-Type": 'application/json'
+                "Content-Type": 'application/json',
+                authorization: `Bearer ${token}`
             },
             body: JSON.stringify(bookingData)
         })
 
         const bookingsData = await res.json()
 
-        if(res.ok && bookingsData.acknowledged){
+        if(res.ok){
             toast.success(`${bookingData.studioTitle} booked by ${bookingData.userName} successfully`, {position: 'top-center'})
             router.push('/my-bookings')
         }else{
-            toast.error('Booking Failed', {position: 'top-center'})
+            toast.error(bookingsData.message, {position: 'top-center'})
         }
 
         setIsOpen(false);

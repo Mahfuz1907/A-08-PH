@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Layers, Mic2 } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
 import { Bookings } from '@/lib/type';
+import { getTokenFromClient } from '@/lib/getTokenFromClient';
 
 interface UserProps{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,9 +22,18 @@ export default function StatsCards({user}:UserProps) {
 
         async function fetchStats() {
             try {
+                const token = await getTokenFromClient()
                 const [resBookings, resListings] = await Promise.all([
-                    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/user/${email}`),
-                    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/email/${email}`)
+                    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/user/${email}`,{
+                        headers: {
+                            authorization: `Bearer ${token}`
+                        }
+                    }),
+                    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/email/${email}`,{
+                        headers: {
+                            authorization: `Bearer ${token}`
+                        }
+                    })
                 ]);
 
                 const bookings = await resBookings.json();

@@ -6,6 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { getTokenFromClient } from '@/lib/getTokenFromClient'
 import { Category, Studio } from '@/lib/type'
 import { uploadUrlToImgbb } from '@/lib/UploadImage'
 import { DollarSign, FileText, ImageIcon, MapPin, Save, Star } from 'lucide-react'
@@ -52,10 +53,13 @@ const EditForm = ({categories, studio}:EditFormTypes) => {
           hostEmail: editedData.hostEmail
         }
 
+        const token = await getTokenFromClient()
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/edit/${studio._id}`, {
                 method: 'PUT',
                 headers:{
-                  "Content-Type": 'application/json'
+                  "Content-Type": 'application/json',
+                  authorization: `Bearer ${token}`
                 },
                 body:JSON.stringify(studioData)
             })

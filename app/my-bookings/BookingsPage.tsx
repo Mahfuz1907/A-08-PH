@@ -4,9 +4,15 @@ import { Bookings } from '@/lib/type';
 import { CalendarX } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { getTokenFromServer } from '@/lib/getTokenFromServer';
 
 const BookingsPage = async() => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings`)
+    const token = await getTokenFromServer()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const bookings = await res.json()
     return (
         <div className="max-w-6xl mx-auto px-4 py-8 text-foreground">

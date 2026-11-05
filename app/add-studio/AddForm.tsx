@@ -12,6 +12,7 @@ import { uploadUrlToImgbb } from "@/lib/UploadImage";
 import { Category } from "@/lib/type";
 import { Field, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 
 const AddForm = ({categories}:{categories:Category[]}) => {
@@ -50,11 +51,13 @@ const AddForm = ({categories}:{categories:Category[]}) => {
       hostEmail: form.hostEmail
     }
     
+    const token = await getTokenFromClient()
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/add-studio`, {
         method: 'POST',
         headers:{
-          "Content-Type": 'application/json'
+          "Content-Type": 'application/json',
+          authorization: `Bearer ${token}`
         },
         body:JSON.stringify(studioData)
     })

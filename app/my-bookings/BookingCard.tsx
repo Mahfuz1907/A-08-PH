@@ -1,6 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import CancelBooking from "./CancelBooking";
 import { Bookings } from "@/lib/type";
+import DeleteBooking from "./DeleteBooking";
 
 
 export default function BookingCard({ booking }: {booking: Bookings}) {
@@ -27,11 +28,13 @@ export default function BookingCard({ booking }: {booking: Bookings}) {
                 <p className="font-medium text-emerald-600 dark:text-emerald-400">Hourly Rate: ${booking["hourly-rate"]}/hr</p>
             </CardContent>
 
-            <CardFooter className="pt-2 border-t border-border flex justify-between items-center text-xs text-muted-foreground">
-                <span>ID: {booking._id.slice(-6)}</span>
-                {booking.status === 'Pending' && (
+            <CardFooter className="pt-2 w-full border-t border-border flex justify-between items-center text-xs text-muted-foreground">
+                {booking.status === 'Pending' ? (
                     <CancelBooking booking={booking} />
-                )}
+                ):(
+                    <DeleteBooking booking={booking} />
+                )
+            }
             </CardFooter>
         </Card>
     );

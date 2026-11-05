@@ -5,6 +5,7 @@ import ListCard from './ListCard';
 import { Studio } from '@/lib/type';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { getTokenFromServer } from '@/lib/getTokenFromServer';
 
 
 const MyListingsPage = async() => {
@@ -12,7 +13,13 @@ const MyListingsPage = async() => {
         headers: await headers()
     })
     const userEmail = session?.user?.email
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/email/${userEmail}`)
+
+    const token = await getTokenFromServer()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/studios/email/${userEmail}`,{
+        headers:{
+            authorization: `Bearer ${token}`
+        }
+    })
     const studios = await res.json()
     
     return (
