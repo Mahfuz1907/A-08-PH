@@ -13,6 +13,7 @@ A modern, responsive full-stack studio management web application built with Nex
 - **SEO-Optimized & Dynamic Routing:** Built with Next.js App Router featuring Server Component metadata generation to avoid title flickering and boost search performance.
 - **Robust Error Handling & Loading States:** Integrated global error boundaries (`error.tsx`), suspense fallbacks, and Skeleton UI states for reliable user feedback.
 - **Responsive Dashboard:** Interactive Overview Hub with real-time stats cards, dark/light theme support, and user profile summaries.
+- **Toggle Theme:** There is a facility of dark and light theme toggle.
 
 ---
 
@@ -20,9 +21,9 @@ A modern, responsive full-stack studio management web application built with Nex
 
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS, Shadcn UI / Lucide React Icons
-- **Database & ORM:** MongoDB & Mongoose
-- **Authentication:** Better Auth / Custom Auth Flow
+- **Styling:** Tailwind CSS, Shadcn UI, Lucide React Icons
+- **Database & ORM:** MongoDB
+- **Authentication:** Better Auth
 - **Deployment:** Vercel
 
 ---
