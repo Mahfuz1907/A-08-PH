@@ -23,13 +23,13 @@ const CatFilter = ({categories}:{categories: Category[]}) => {
     defaultValue={''}
     value={byCategory || ''}
     onValueChange={setByCategory}>
-      <TabsList>
-        <TabsTrigger value="">
+      <TabsList className={'flex flex-row justify-start items-center overflow-x-auto whitespace-nowrap w-full scrollbar-none'}>
+        <TabsTrigger value="" className={'shrink-0 min-w-max'}>
           All
         </TabsTrigger>
         {
           categories.map((cat) => 
-          <TabsTrigger key={cat.slug} value={cat.slug}>
+          <TabsTrigger key={cat.slug} value={cat.slug} className={'shrink-0 min-w-max'}>
             {cat.title}
           </TabsTrigger>)
         }
