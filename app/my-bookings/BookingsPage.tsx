@@ -5,10 +5,18 @@ import { CalendarX } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getTokenFromServer } from '@/lib/getTokenFromServer';
+import { auth } from '@/auth';
+import { headers } from 'next/headers';
 
 const BookingsPage = async() => {
+    const session = await auth.api.getSession({
+        headers: await headers() 
+    })
+
+    const userEmail = session?.user?.email
+
     const token = await getTokenFromServer()
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/user/${userEmail}`, {
         headers: {
             authorization: `Bearer ${token}`
         }
