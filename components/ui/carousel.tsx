@@ -95,9 +95,6 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    // Mirror embla's scroll-button state as soon as the carousel is ready;
-    // afterwards the "select"/"reInit" listeners below keep it in sync.
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- onSelect only copies embla's external state
     onSelect(api)
     api.on("reInit", onSelect)
     api.on("select", onSelect)
