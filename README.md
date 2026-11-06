@@ -2,7 +2,7 @@
 
 A modern, responsive full-stack studio management web application built with Next.js 14, TypeScript, Tailwind CSS, and MongoDB. Studio Space allows creators to discover, list, and book recording booths and creative studio spaces effortlessly.
 
-🌐 **Live Site URL:** [https://your-live-website-link.vercel.app](https://your-live-website-link.vercel.app)
+🌐 **Live Site URL:** [https://a-08-ph.vercel.app/](https://a-08-ph.vercel.app/)
 
 ---
 
@@ -32,7 +32,7 @@ A modern, responsive full-stack studio management web application built with Nex
 You can use the following test account credentials to evaluate the protected features (Dashboard, My Bookings, Add Studio):
 
 - **Email:** `abc@gmail.com`
-- **Password:** `Ab1234`
+- **Password:** `Ab123456`
 
 ---
 
