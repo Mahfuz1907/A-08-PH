@@ -196,10 +196,6 @@ const StudioContent = async({params}:StudioDetailsProps) => {
                                 <span>Security Deposit</span>
                                 <span className="font-bold text-foreground">${studio.securityDeposit}</span>
                             </div>
-                            <div className="border-t border-border pt-3 flex justify-between text-base font-bold text-sky-600 dark:text-sky-400">
-                                <span>Total Due at Booking</span>
-                                <span>${(studio["hourly-rate"] * 2) + studio.securityDeposit} (Est. 2 hrs)</span>
-                            </div>
                         </div>
                         <BookingDialogueBox studio={studio} />
                     </div>

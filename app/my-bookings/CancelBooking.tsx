@@ -4,7 +4,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Button } from '@/components/ui/button';
 import { getTokenFromClient } from '@/lib/getTokenFromClient';
 import { Bookings } from '@/lib/type';
-import { X } from 'lucide-react';
+import { CircleX, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
@@ -47,6 +47,7 @@ const CancelBooking = ({booking}:{booking:Bookings}) => {
             />
         }
       >
+        <CircleX />
         Cancel Booking
       </AlertDialogTrigger>
 
