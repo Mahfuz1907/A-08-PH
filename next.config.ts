@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
     ],
   },
   partialPrefetching: false,
-  reactCompiler: true,
   turbopack: {
     rules: {
       "*.css": {
