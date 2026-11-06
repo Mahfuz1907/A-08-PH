@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "app/my-bookings/Receipt.jsx", "app/my-bookings/Receipt.jsx", "app/my-bookings/Receipt.jsx"  ],
   "exclude": ["node_modules"]
 }
